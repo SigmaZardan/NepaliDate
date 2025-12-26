@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		60D179F02EFC5E8000EBBBF8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D179EF2EFC5E8000EBBBF8 /* WidgetKit.framework */; };
+		60D179F22EFC5E8000EBBBF8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D179F12EFC5E8000EBBBF8 /* SwiftUI.framework */; };
+		60D179FF2EFC5E8200EBBBF8 /* NepaliDateWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60D179ED2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		603F50742EF84370008E8ADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,13 +27,47 @@
 			remoteGlobalIDString = 603F50652EF8436E008E8ADE;
 			remoteInfo = "Nepali Date";
 		};
+		60D179FD2EFC5E8200EBBBF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 603F505E2EF8436E008E8ADE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60D179EC2EFC5E8000EBBBF8;
+			remoteInfo = NepaliDateWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		60D17A002EFC5E8200EBBBF8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				60D179FF2EFC5E8200EBBBF8 /* NepaliDateWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		603F50662EF8436E008E8ADE /* Nepali Date.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nepali Date.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		603F50732EF84370008E8ADE /* Nepali DateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nepali DateTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		603F507D2EF84370008E8ADE /* Nepali DateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nepali DateUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60D179ED2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NepaliDateWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		60D179EF2EFC5E8000EBBBF8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		60D179F12EFC5E8000EBBBF8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		60D17A032EFC5E8200EBBBF8 /* Exceptions for "NepaliDateWidget" folder in "NepaliDateWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 60D179EC2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		603F50682EF8436E008E8ADE /* Nepali Date */ = {
@@ -43,6 +83,14 @@
 		603F50802EF84370008E8ADE /* Nepali DateUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Nepali DateUITests";
+			sourceTree = "<group>";
+		};
+		60D179F32EFC5E8000EBBBF8 /* NepaliDateWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60D17A032EFC5E8200EBBBF8 /* Exceptions for "NepaliDateWidget" folder in "NepaliDateWidgetExtension" target */,
+			);
+			path = NepaliDateWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +117,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60D179EA2EFC5E8000EBBBF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60D179F22EFC5E8000EBBBF8 /* SwiftUI.framework in Frameworks */,
+				60D179F02EFC5E8000EBBBF8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +135,8 @@
 				603F50682EF8436E008E8ADE /* Nepali Date */,
 				603F50762EF84370008E8ADE /* Nepali DateTests */,
 				603F50802EF84370008E8ADE /* Nepali DateUITests */,
+				60D179F32EFC5E8000EBBBF8 /* NepaliDateWidget */,
+				60D179EE2EFC5E8000EBBBF8 /* Frameworks */,
 				603F50672EF8436E008E8ADE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +147,18 @@
 				603F50662EF8436E008E8ADE /* Nepali Date.app */,
 				603F50732EF84370008E8ADE /* Nepali DateTests.xctest */,
 				603F507D2EF84370008E8ADE /* Nepali DateUITests.xctest */,
+				60D179ED2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		60D179EE2EFC5E8000EBBBF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60D179EF2EFC5E8000EBBBF8 /* WidgetKit.framework */,
+				60D179F12EFC5E8000EBBBF8 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +171,12 @@
 				603F50622EF8436E008E8ADE /* Sources */,
 				603F50632EF8436E008E8ADE /* Frameworks */,
 				603F50642EF8436E008E8ADE /* Resources */,
+				60D17A002EFC5E8200EBBBF8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				60D179FE2EFC5E8200EBBBF8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				603F50682EF8436E008E8ADE /* Nepali Date */,
@@ -163,6 +234,28 @@
 			productReference = 603F507D2EF84370008E8ADE /* Nepali DateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		60D179EC2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60D17A042EFC5E8200EBBBF8 /* Build configuration list for PBXNativeTarget "NepaliDateWidgetExtension" */;
+			buildPhases = (
+				60D179E92EFC5E8000EBBBF8 /* Sources */,
+				60D179EA2EFC5E8000EBBBF8 /* Frameworks */,
+				60D179EB2EFC5E8000EBBBF8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				60D179F32EFC5E8000EBBBF8 /* NepaliDateWidget */,
+			);
+			name = NepaliDateWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = NepaliDateWidgetExtension;
+			productReference = 60D179ED2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +277,9 @@
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 603F50652EF8436E008E8ADE;
 					};
+					60D179EC2EFC5E8000EBBBF8 = {
+						CreatedOnToolsVersion = 26.2;
+					};
 				};
 			};
 			buildConfigurationList = 603F50612EF8436E008E8ADE /* Build configuration list for PBXProject "Nepali Date" */;
@@ -203,6 +299,7 @@
 				603F50652EF8436E008E8ADE /* Nepali Date */,
 				603F50722EF84370008E8ADE /* Nepali DateTests */,
 				603F507C2EF84370008E8ADE /* Nepali DateUITests */,
+				60D179EC2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +320,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		603F507B2EF84370008E8ADE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60D179EB2EFC5E8000EBBBF8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,6 +357,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60D179E92EFC5E8000EBBBF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +376,11 @@
 			isa = PBXTargetDependency;
 			target = 603F50652EF8436E008E8ADE /* Nepali Date */;
 			targetProxy = 603F507E2EF84370008E8ADE /* PBXContainerItemProxy */;
+		};
+		60D179FE2EFC5E8200EBBBF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60D179EC2EFC5E8000EBBBF8 /* NepaliDateWidgetExtension */;
+			targetProxy = 60D179FD2EFC5E8200EBBBF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -397,6 +513,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Nepali Date";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +546,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Nepali Date";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -530,6 +650,64 @@
 			};
 			name = Release;
 		};
+		60D17A012EFC5E8200EBBBF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NepaliDateWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NepaliDateWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bibek.Nepali-Date.NepaliDateWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		60D17A022EFC5E8200EBBBF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NepaliDateWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NepaliDateWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "bibek.Nepali-Date.NepaliDateWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -565,6 +743,15 @@
 			buildConfigurations = (
 				603F508E2EF84370008E8ADE /* Debug */,
 				603F508F2EF84370008E8ADE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60D17A042EFC5E8200EBBBF8 /* Build configuration list for PBXNativeTarget "NepaliDateWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60D17A012EFC5E8200EBBBF8 /* Debug */,
+				60D17A022EFC5E8200EBBBF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
