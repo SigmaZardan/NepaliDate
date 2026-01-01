@@ -87,56 +87,61 @@ struct NepaliDateSmallWidgetView: View {
     @Environment(\.colorScheme) var colorScheme
     let entry: NepaliDateEntry
 
-    private var accent: Color {
+    private var primaryRed: Color {
         colorScheme == .dark ? .nepaliRedDark : .nepaliRed
+    }
+
+    private var primaryBlue: Color {
+        colorScheme == .dark ? .nepaliBlueDark : .nepaliBlue
+    }
+
+    private var primaryOrange: Color {
+        colorScheme == .dark ? .nepaliOrangeDark : .nepaliOrange
     }
 
     var body: some View {
         ZStack {
-            // Minimal background
-            LinearGradient(
-                colors: colorScheme == .dark
-                    ? [Color(red: 0.12, green: 0.12, blue: 0.14),
-                       Color(red: 0.10, green: 0.10, blue: 0.12)]
-                    : [Color(red: 0.98, green: 0.98, blue: 0.97),
-                       Color(red: 0.95, green: 0.96, blue: 0.97)],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            VStack(spacing: 4) {
+                // Year at top
+                Text(String(entry.nepaliYear))
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
 
-            VStack(spacing: 6) {
+                // Large day number with circular background
+
+                    Text("\(entry.nepaliDay)")
+                        .font(.system(size: 64, weight: .bold))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [primaryRed, primaryOrange],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
 
                 // Month
-                Text(entry.nepaliMonth.uppercased())
-                    .font(.system(size: 15, weight: .semibold))
-                    .tracking(1)
-                    .foregroundColor(.black)
+                Text(entry.nepaliMonth)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
 
-                // Day (main focus)
-                Text(String(entry.nepaliDay))
-                    .font(.system(size: 50, weight: .bold))
-                    .foregroundColor(.primary)
-
-                // Weekday
+                // Weekday at bottom
                 Text(entry.weekday)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.black.opacity(0.7))
-
-                // Year
-                Text(String(entry.nepaliYear))
-                    .font(.system(size: 10, weight: .regular))
-                    .foregroundColor(.black.opacity(0.7))
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [primaryRed, primaryOrange],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
             }
             .padding()
         }
-        .containerBackground(for: .widget) {
-            Color.clear
-        }
+        .clipShape(RoundedRectangle(cornerRadius: 24))
     }
 }
 
 
-// MARK: - Medium Widget (Home Screen)
 struct NepaliDateMediumWidgetView: View {
     @Environment(\.colorScheme) var colorScheme
     let entry: NepaliDateEntry
@@ -155,20 +160,7 @@ struct NepaliDateMediumWidgetView: View {
 
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                colors: colorScheme == .dark ? [
-                    Color(red: 0.12, green: 0.12, blue: 0.15),
-                    Color(red: 0.15, green: 0.13, blue: 0.16)
-                ] : [
-                    Color(red: 0.98, green: 0.95, blue: 0.93),
-                    Color(red: 0.96, green: 0.94, blue: 0.95)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-
-            HStack(spacing: 16) {
+            HStack(spacing: 24) {
                 // Left side - Large day number
                 ZStack {
                     Circle()
@@ -179,10 +171,10 @@ struct NepaliDateMediumWidgetView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .frame(width: 80, height: 80)
+                        .frame(width: 100, height: 100)
 
                     Text("\(entry.nepaliDay)")
-                        .font(.system(size: 40, weight: .bold))
+                        .font(.system(size: 52, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [primaryRed, primaryOrange],
@@ -193,19 +185,17 @@ struct NepaliDateMediumWidgetView: View {
                 }
 
                 // Right side - Date info
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(String(entry.nepaliYear))
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.black)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
 
                     Text(entry.nepaliMonth)
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundStyle(
-                            .black
-                        )
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
 
                     Text(entry.weekday)
-                        .font(.system(size: 15, weight: .medium))
+                        .font(.system(size: 20, weight: .medium))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [primaryRed, primaryOrange],
@@ -217,97 +207,90 @@ struct NepaliDateMediumWidgetView: View {
 
                 Spacer()
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 24)
         }
-    }
-}
-
-// MARK: - Lock Screen Widgets
-
-struct NepaliDateInlineView: View {
-    let entry: NepaliDateEntry
-
-    var body: some View {
-        Text("\(entry.weekday)")
-            .font(.system(size: 14, weight: .medium))
+        .clipShape(RoundedRectangle(cornerRadius: 24))
     }
 }
 
 
-struct NepaliDateRectangularView: View {
-    let entry: NepaliDateEntry
+    struct NepaliDateRectangularView: View {
+        let entry: NepaliDateEntry
 
-    var body: some View {
-        HStack(spacing: 8) {
+        var body: some View {
+            HStack(spacing: 8) {
                 Text("\(entry.weekday), \(entry.nepaliDay) \(entry.nepaliMonth)")
                     .font(.system(size: 24, weight: .medium))
-        }
-    }
-}
-
-// MARK: - Main Widget View
-struct NepaliDateWidgetView: View {
-    @Environment(\.widgetFamily) var family
-    let entry: NepaliDateEntry
-
-    var body: some View {
-        switch family {
-        case .systemSmall:
-            NepaliDateSmallWidgetView(entry: entry)
-
-        case .systemMedium:
-            NepaliDateMediumWidgetView(entry: entry)
-
-        case .accessoryRectangular:
-            NepaliDateRectangularView(entry: entry)
-
-        default:
-            EmptyView()
-        }
-    }
-}
-
-// MARK: - Widget Configuration
-struct NepaliDateWidget: Widget {
-    let kind: String = "NepaliDateWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                NepaliDateWidgetView(entry: entry)
-                    .containerBackground(.clear, for: .widget)
-            } else {
-                NepaliDateWidgetView(entry: entry)
             }
         }
-        .configurationDisplayName("नेपाली मिति")
-        .description("आजको नेपाली मिति हेर्नुहोस्")
-        .supportedFamilies([
-            .systemSmall,
-            .systemMedium,
-            .accessoryInline,
-            .accessoryCircular,
-            .accessoryRectangular
-        ])
     }
-}
 
-// MARK: - Previews
-#Preview("Small Widget", as: .systemSmall) {
-    NepaliDateWidget()
-} timeline: {
-    NepaliDateEntry.sampleDate
-}
+    // MARK: - Main Widget View
+    struct NepaliDateWidgetView: View {
+        @Environment(\.widgetFamily) var family
+        let entry: NepaliDateEntry
 
-#Preview("Medium Widget", as: .systemMedium) {
-    NepaliDateWidget()
-} timeline: {
-    NepaliDateEntry.sampleDate
-}
+        var body: some View {
+            switch family {
+                case .systemSmall:
+                    NepaliDateSmallWidgetView(entry: entry)
 
-#Preview("Lock Screen - Rectangular", as: .accessoryRectangular) {
-    NepaliDateWidget()
-} timeline: {
-    NepaliDateEntry.sampleDate
-}
+                case .systemMedium:
+                    NepaliDateMediumWidgetView(entry: entry)
+
+                case .accessoryRectangular:
+                    NepaliDateRectangularView(entry: entry)
+
+                default:
+                    EmptyView()
+            }
+        }
+    }
+
+    // MARK: - Widget Configuration
+    struct NepaliDateWidget: Widget {
+        let kind: String = "NepaliDateWidget"
+
+        var body: some WidgetConfiguration {
+            StaticConfiguration(kind: kind, provider: Provider()) { entry in
+                if #available(iOS 17.0, *) {
+                    NepaliDateWidgetView(entry: entry)
+                        .containerBackground(for: .widget) {
+                            Color(red: 0.99, green: 0.97, blue: 0.91).opacity(0.3)
+                        }
+                } else {
+                    NepaliDateWidgetView(entry: entry)
+                        .background(Color(red: 0.99, green: 0.97, blue: 0.91).opacity(0.3))
+                }
+            }
+            .configurationDisplayName("नेपाली मिति")
+            .description("आजको नेपाली मिति हेर्नुहोस्")
+            .supportedFamilies([
+                .systemSmall,
+                .systemMedium,
+                .accessoryInline,
+                .accessoryCircular,
+                .accessoryRectangular
+            ])
+        }
+    }
+
+    // MARK: - Previews
+    #Preview("Small Widget", as: .systemSmall) {
+        NepaliDateWidget()
+    } timeline: {
+        NepaliDateEntry.sampleDate
+    }
+
+    #Preview("Medium Widget", as: .systemMedium) {
+        NepaliDateWidget()
+    } timeline: {
+        NepaliDateEntry.sampleDate
+    }
+
+    #Preview("Lock Screen - Rectangular", as: .accessoryRectangular) {
+        NepaliDateWidget()
+    } timeline: {
+        NepaliDateEntry.sampleDate
+    }
 

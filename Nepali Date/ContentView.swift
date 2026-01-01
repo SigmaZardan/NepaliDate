@@ -31,6 +31,8 @@ struct ContentView: View {
     @State private var isActiveOnLockScreen = false
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.scenePhase) private var scenePhase
+    @State private var showAppInformationView = false
+    @State private var showSupportView = false
 
     // Computed properties for adaptive colors
     private var primaryRed: Color {
@@ -180,6 +182,21 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationDestination(
+                isPresented: $showHomeScreenWidgetInstructionView,
+                destination: {HomeScreenWidgetInstructionView()}
+            )
+            .navigationDestination(
+                isPresented: $showLockScreenWidgetInstructionView,
+                destination: { LockScreenWidgetInstructionView()}
+            )
+            .navigationDestination(
+                isPresented: $showAppInformationView,
+                destination: { AboutView()}
+            )
+            .navigationDestination(
+                isPresented: $showSupportView,
+                destination: {SupportView() })
         }
     }
 
@@ -240,8 +257,8 @@ struct ContentView: View {
         }
     }
 
-    @State private var showWidgetInstructionForHomeScreen = false
-    @State private var showWidgetInstructionForLockScreen = false
+    @State private var showHomeScreenWidgetInstructionView = false
+    @State private var showLockScreenWidgetInstructionView = false
 
     @ViewBuilder
     private func widgetStatusCard(isLandscape: Bool) -> some View {
@@ -274,7 +291,7 @@ struct ContentView: View {
                     isActive: isActiveOnHomeScreen,
                     secondaryCardBackground: secondaryCardBackground,
                     colorScheme: colorScheme,
-                    showWidgetInstruction: $showWidgetInstructionForHomeScreen
+                    showWidgetInstruction: $showHomeScreenWidgetInstructionView
                 )
 
                 // Lock Screen widget row
@@ -287,7 +304,7 @@ struct ContentView: View {
                     isActive: isActiveOnLockScreen,
                     secondaryCardBackground: secondaryCardBackground,
                     colorScheme: colorScheme,
-                    showWidgetInstruction: $showWidgetInstructionForLockScreen
+                    showWidgetInstruction: $showLockScreenWidgetInstructionView
                 )
             }
         }
@@ -325,7 +342,7 @@ struct ContentView: View {
     @ViewBuilder
     private func ctaButton() -> some View {
         Button {
-
+            showLockScreenWidgetInstructionView = true
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "plus.circle.fill")
@@ -351,16 +368,12 @@ struct ContentView: View {
     @ViewBuilder
     private func footerButtons() -> some View {
         HStack(spacing: 40) {
-            FooterButton(icon: "gearshape.fill", title: "Settings", color: primaryBlue) {
-
-            }
-
             FooterButton(icon: "info.circle.fill", title: "About", color: primaryOrange) {
-
+                showAppInformationView = true
             }
 
             FooterButton(icon: "heart.fill", title: "Support", color: primaryRed) {
-
+                showSupportView = true
             }
         }
     }
