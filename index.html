@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepali Date - See Bikram Sambat on iPhone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #0f0f0f;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #dc2626 0%, #ea580c 25%, #d97706 50%, #dc2626 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 26px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flag-emoji {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.4em;
+            color: #4b5563;
+            font-weight: 500;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            color: #6b7280;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: white;
+            border-radius: 30px;
+            padding: 80px 60px;
+            margin: 40px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+        }
+
+        .section-intro {
+            text-align: center;
+            font-size: 1.2em;
+            color: #6b7280;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #fef3f2 0%, #fff7ed 100%);
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ea580c, #d97706);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.2);
+            border-color: #dc2626;
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            font-size: 1.3em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .use-case {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #dc2626;
+            transition: all 0.3s ease;
+        }
+
+        .use-case:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.2);
+        }
+
+        .use-case h3 {
+            color: #dc2626;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .use-case p {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        /* Privacy Badge */
+        .privacy-badge {
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+            border: 3px solid #10b981;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-badge::before {
+            content: '🔒';
+            position: absolute;
+            font-size: 15em;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .privacy-badge h3 {
+            color: #065f46;
+            font-size: 2em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy-badge p {
+            color: #047857;
+            font-size: 1.2em;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 80px 60px;
+            border-radius: 30px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 1200px;
+        }
+
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2em;
+            color: #d1d5db;
+            margin-bottom: 40px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #1a1a1a;
+            padding: 16px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info p {
+            font-size: 1em;
+            color: #9ca3af;
+            margin: 10px 0;
+        }
+
+        .contact-info strong {
+            color: #e5e7eb;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1em;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
+
+            .hero-content {
+                padding: 40px 25px;
+            }
+
+            .content-section {
+                padding: 50px 30px;
+            }
+
+            .contact-section {
+                padding: 50px 30px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gradient-bg"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="flag-emoji">🇳🇵</span>
+                <h1>Nepali Date</h1>
+                <p class="tagline">See today's Bikram Sambat date right on your iPhone</p>
+                <p class="hero-description">
+                    No need to open apps or scroll through calendars. Just one glance at your Home Screen or Lock Screen
+                    is all you need.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="content-section">
+            <h2>Designed for Simplicity</h2>
+            <p class="section-intro">
+                Everything you need for daily Nepali date viewing. Nothing more, nothing less.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <div class="feature-title">Home Screen Widgets</div>
+                    <p class="feature-desc">View today's Nepali date directly on your Home Screen without opening any
+                        app.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <div class="feature-title">Lock Screen Support</div>
+                    <p class="feature-desc">Check the Nepali date instantly without even unlocking your phone.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📐</span>
+                    <div class="feature-title">Multiple Widget Sizes</div>
+                    <p class="feature-desc">Choose from small, medium, or large widgets to match your perfect layout.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">✅</span>
+                    <div class="feature-title">Accurate Calendar</div>
+                    <p class="feature-desc">Dates are updated daily and stay reliable. Always accurate, always current.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <div class="feature-title">Lightweight & Fast</div>
+                    <p class="feature-desc">No heavy app, no full calendar bloat, no unnecessary features slowing you
+                        down.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <div class="feature-title">Clean Design</div>
+                    <p class="feature-desc">Simple, minimal interface with no clutter or distractions whatsoever.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <div class="feature-title">Completely Free</div>
+                    <p class="feature-desc">No account required. No subscriptions. No hidden costs. Ever.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔐</span>
+                    <div class="feature-title">Privacy-First</div>
+                    <p class="feature-desc">Zero data collection. Everything stays on your device. Complete privacy.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="content-section" style="background: linear-gradient(135deg, #fef3f2 0%, #fff7ed 100%);">
+            <h2>Built for Nepali Users</h2>
+            <p class="section-intro">
+                Perfect for everyday use — at home, at work, or on the go.
+            </p>
+
+            <div class="use-cases">
+                <div class="use-case">
+                    <h3>Daily Reference</h3>
+                    <p>Quickly check the Nepali date anytime without interrupting your flow. Perfect for planning
+                        events, checking important dates, or just staying connected to your culture.</p>
+                </div>
+
+                <div class="use-case">
+                    <h3>Zero Learning Curve</h3>
+                    <p>If you already use iPhone widgets, you'll feel at home immediately. Add the widget once, and
+                        you're done. It just works.</p>
+                </div>
+
+                <div class="use-case">
+                    <h3>Always Accessible</h3>
+                    <p>No need to remember to open an app or navigate through menus. The date is always there, right
+                        where you need it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Section -->
+        <section class="content-section">
+            <div class="privacy-badge">
+                <h3>🔐 Your Privacy Matters</h3>
+                <p>Nepali Date Widgets does not collect, store, or transmit any of your data. Everything stays
+                    completely private on your device. No tracking. No analytics. No exceptions.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Support & Contact</h2>
+            <p>Need help? Have feedback? We'd love to hear from you!</p>
+
+            <div class="contact-buttons">
+                <a href="mailto:bibekbhujel077@gmail.com" class="contact-btn">
+                    <span>📧</span>
+                    Email Support
+                </a>
+                <a href="tel:+9779814177147" class="contact-btn whatsapp">
+                    <span>📞</span>
+                    Call/WhatsApp
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Email:</strong> bibekbhujel077@gmail.com</p>
+                <p><strong>Phone:</strong> +977-9814177147</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Nepali Date Widgets. Made with ❤️ for Nepali speakers.</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use
+                    (EULA)</a>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
